@@ -31,7 +31,7 @@ public class SpeedEnchantment extends Enchantment{
 
     @Override
     public int getMinLevel() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -43,9 +43,8 @@ public class SpeedEnchantment extends Enchantment{
     public static class SpeedEquip {
     	@SubscribeEvent
     	public static void doStuff(TickEvent.PlayerTickEvent event) {
-            PlayerEntity playerIn = event.player;
-            int level = EnchantmentHelper.getEnchantmentLevel(EnchantHandler.SPEED.get(), playerIn.getItemStackFromSlot(EquipmentSlotType.FEET));
-            if(level == 1) {
+           PlayerEntity playerIn = event.player;
+            if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SPEED.get(), playerIn.getItemStackFromSlot(EquipmentSlotType.FEET)) > 0) {
                 playerIn.addPotionEffect(new EffectInstance(Effects.SPEED, 10, 3));
             }
     	}
